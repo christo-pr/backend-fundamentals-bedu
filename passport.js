@@ -14,8 +14,8 @@ passport.use(
       passwordField: "password",
     },
     function (email, password, cb) {
-      return models.User.find({
-        where: models.Sequelize.and({ email, password }),
+      return models.User.findOne({
+        where: { email, password },
       })
         .then(function (user) {
           return cb(null, user)
@@ -35,14 +35,11 @@ passport.use(
       secretOrKey: process.env.JWT_SECRET,
     },
     function (jwtPayload, cb) {
-      console.log("jwtPayload", jwtPayload)
-      return models.User.find(jwtPayload.id)
+      return models.User.findByPk(jwtPayload.id)
         .then((user) => {
-          console.log("user", user)
           return cb(null, user)
         })
         .catch((err) => {
-          console.log("err", err)
           return cb(err)
         })
     }

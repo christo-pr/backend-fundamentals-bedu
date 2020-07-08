@@ -3,16 +3,10 @@ var models = require("../db/models")
 var router = express.Router()
 
 /* GET users listing. */
-router.get("/", function (req, res, next) {
-  models.User.findAll()
-    .then((users) => {
-      console.log("users", users)
-      res.json(users)
-    })
-    .catch((err) => {
-      console.log("err", err)
-      res.status(400).json({ error: err })
-    })
+router.get("/", async function (req, res, next) {
+  var users = await models.User.findAll()
+  console.log("users", users)
+  res.json(users)
 })
 
 module.exports = router
