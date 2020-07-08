@@ -1,5 +1,5 @@
 var passport = require("passport")
-var models = require("./src/models")
+var models = require("./db/models")
 var LocalStrategy = require("passport-local").Strategy
 
 passport.use(

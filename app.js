@@ -8,8 +8,8 @@ require("dotenv").config()
 require("./passport")
 
 // Routes
-var listingsRouter = require("./src/routes/listings")
-var authRouter = require("./src/routes/auth")
+var listingsRouter = require("./routes/listings")
+var authRouter = require("./routes/auth")
 
 var app = express()
 
