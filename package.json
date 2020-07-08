@@ -6,7 +6,8 @@
     "start": "node ./bin/www",
     "dev": "DEBUG=backend-fundamentals-bedu:* nodemon ./bin/www",
     "migrate": "sequelize db:migrate",
-    "seed": "sequelize db:seed --seeders-path ./db/seeders --url ./db/dev.sqlite3",
+    "seed": "sequelize db:seed",
+    "seed:create": "sequelize seed:create --name",
     "setup": "npm run migrate && npm run seed"
   },
   "dependencies": {
@@ -14,6 +15,7 @@
     "debug": "~2.6.9",
     "dotenv": "^8.2.0",
     "express": "~4.16.1",
+    "faker": "^4.1.0",
     "jsonwebtoken": "^8.5.1",
     "morgan": "~1.9.1",
     "passport": "^0.4.1",
