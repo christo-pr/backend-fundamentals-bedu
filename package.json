@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "DEBUG=backend-fundamentals-bedu:* nodemon ./bin/www",
+    "model:generate": "sequelize model:generate",
     "migrate": "sequelize db:migrate",
     "seed": "sequelize db:seed",
     "seed:create": "sequelize seed:create --name",
