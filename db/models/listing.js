@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     address: DataTypes.STRING,
     price: DataTypes.DECIMAL,
     maxAllow: DataTypes.INTEGER,
-    payDate: DataTypes.DATE,
+    payDate: DataTypes.STRING,
   })
 
   Listing.associate = function (models) {
