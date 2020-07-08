@@ -8,7 +8,6 @@ require("dotenv").config()
 require("./passport")
 
 // Routes
-var listingsRouter = require("./routes/listings")
 var authRouter = require("./routes/auth")
 
 var app = express()
@@ -19,7 +18,6 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, "public")))
 
-app.use("/listings", listingsRouter)
 app.use("/auth", authRouter)
 
 module.exports = app
