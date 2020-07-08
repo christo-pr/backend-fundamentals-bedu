@@ -18,13 +18,8 @@ router.post("/login", function (req, res) {
       })
     }
 
-    req.login(user, { session: false }, function (error) {
-      if (error) res.send(error)
-
-      // Generate the token
-      var token = jwt.sign(user, process.env.JWT_SECRET)
-      return res.json({ user, token })
-    })
+    var token = jwt.sign(JSON.stringify(user), process.env.JWT_SECRET)
+    return res.json({ user, token })
   })(req, res)
 })
 

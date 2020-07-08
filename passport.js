@@ -13,7 +13,7 @@ passport.use(
         where: models.Sequelize.and({ email, password }),
       })
         .then(function (user) {
-          cb(null, user)
+          return cb(null, user)
         })
         .catch((err) => {
           return cb(err)

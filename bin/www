@@ -26,6 +26,17 @@ var server = http.createServer(app)
  * Sync Database then init app
  */
 models.sequelize.sync().then(function () {
+  // models.User.create({
+  //   name: "Christofer",
+  //   email: "admin@test.com",
+  //   password: "testing123",
+  // })
+  //   .then((res) => {
+  //     console.log("user created")
+  //   })
+  //   .catch((err) => {
+  //     console.log(err)
+  //   })
   /**
    * Listen on provided port, on all network interfaces.
    */

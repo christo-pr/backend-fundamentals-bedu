@@ -6,7 +6,7 @@
     "start": "node ./bin/www",
     "dev": "DEBUG=backend-fundamentals-bedu:* nodemon ./bin/www",
     "migrate": "sequelize db:migrate",
-    "seed": "sequelize db:seed",
+    "seed": "sequelize db:seed --seeders-path ./db/seeders --url ./db/dev.sqlite3",
     "setup": "npm run migrate && npm run seed"
   },
   "dependencies": {
