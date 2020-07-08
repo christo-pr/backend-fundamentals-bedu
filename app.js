@@ -2,10 +2,14 @@ var express = require("express")
 var path = require("path")
 var cookieParser = require("cookie-parser")
 var logger = require("morgan")
+require("dotenv").config()
+
+// Auth
+require("./passport")
 
 // Routes
 var indexRouter = require("./src/routes/index")
-var usersRouter = require("./src/routes/users")
+var authRouter = require("./src/routes/auth")
 
 var app = express()
 
@@ -16,6 +20,6 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, "public")))
 
 app.use("/", indexRouter)
-app.use("/users", usersRouter)
+app.use("/auth", authRouter)
 
 module.exports = app
