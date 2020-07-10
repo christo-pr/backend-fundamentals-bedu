@@ -10,7 +10,9 @@
     "seed": "sequelize db:seed:all",
     "seed:undo": "sequelize db:seed:undo",
     "seed:create": "sequelize seed:create --name",
-    "setup": "npm run migrate && npm run seed"
+    "db:setup": "npm run migrate && npm run seed",
+    "db:drop": "sequelize db:drop",
+    "db:reset": "npm run db:drop && npm run db:setup"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
