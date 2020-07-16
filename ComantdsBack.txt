@@ -1,0 +1,19 @@
+## Instalacion de npm y sequelize ibrerias se agregan al package.json
+
+npm i --save sequelize sequelize-cli pg pg-hstore sqlite  
+
+## Instalar Nodemon para estar echuchando cambios en servidor con express
+
+npm install -g nodemon
+
+npm install --save-dev nodemon
+
+## Ejecutar y crear model con sequelize 
+
+./node_modules/.bin/sequelize init  
+
+./node_modules/.bin/sequelize model:generate --name User --attributes name:string,email:string,password:string
+
+## Archivo .env requerido y su contenido
+DATABASE_URL =postgres://house:12345@localhost:5432/houseM
+JWT_SECRET = mysecret
