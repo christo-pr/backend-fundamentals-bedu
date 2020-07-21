@@ -24,7 +24,6 @@ module.exports = (sequelize, DataTypes) => {
       price: DataTypes.INTEGER,
       maxAllow: DataTypes.INTEGER,
       payDate: DataTypes.STRING,
-      userId: DataTypes.INTEGER,
     },
     {
       sequelize,

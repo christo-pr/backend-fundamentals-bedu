@@ -15,19 +15,7 @@ router.get("/:id", function (req, res, next) {
 
 /* POST users listing. */
 router.post("/", function (req, res, next) {
-  var { name, description, address, price, maxAllow, payDate } = req.body
-
-  var newListing = {
-    name,
-    description,
-    address,
-    price,
-    maxAllow,
-    payDate,
-    userId: req.user.id,
-  }
-
-  db.Listing.create(newListing)
+  db.Listing.create({ ...req.body, userId: req.user.id })
     .then(function (listing) {
       res.json({ success: true, data: listing })
     })
