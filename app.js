@@ -14,6 +14,8 @@ var authRouter = require("./routes/auth")
 var usersRouter = require("./routes/users")
 // Listings
 var listingsRouter = require("./routes/listings")
+// Listings
+var tenantsRouter = require("./routes/tenants")
 
 var app = express()
 
@@ -29,6 +31,11 @@ app.use(
   "/listings",
   passport.authenticate("jwt", { session: false }),
   listingsRouter
+)
+app.use(
+  "/tenants",
+  passport.authenticate("jwt", { session: false }),
+  tenantsRouter
 )
 
 module.exports = app

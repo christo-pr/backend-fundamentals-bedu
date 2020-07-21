@@ -4,7 +4,8 @@ var router = express.Router()
 
 /* GET users listing. */
 router.get("/", function (req, res, next) {
-  return db.Listing.findAll().then((listings) => res.json(listings))
+  var filter = req.body.filter || {}
+  return db.Listing.findAll(filter).then((listings) => res.json(listings))
 })
 
 /* GET users listing. */
