@@ -15,3 +15,12 @@ code {
 .social-links {
   display: none;
 }
+
+.clickable {
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.clickable:hover {
+  text-decoration: underline;
+}

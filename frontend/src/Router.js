@@ -8,10 +8,10 @@ export const Routes = () => {
   return (
     <Router>
       <Login path="/" />
-      <Register path="/register" />
+      <Register path="register" />
       <Dashboard path="dashboard" />
-      <Listing path="dashboard" />
-      <Tenant path="dashboard" />
+      <Listing path="listing/:id" />
+      <Tenant path="tenant/:id" />
       <Error404Page default />
     </Router>
   )

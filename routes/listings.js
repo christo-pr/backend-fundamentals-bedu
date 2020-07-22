@@ -4,7 +4,7 @@ var router = express.Router()
 
 /* GET users listing. */
 router.get("/", function (req, res, next) {
-  var filter = req.body.filter || {}
+  var filter = { ...req.body.filter, include: ["tenants"] }
   return db.Listing.findAll(filter).then((listings) => res.json(listings))
 })
 
