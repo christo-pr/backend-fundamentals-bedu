@@ -2,6 +2,7 @@ var express = require("express")
 var path = require("path")
 var cookieParser = require("cookie-parser")
 var logger = require("morgan")
+var cors = require("cors")
 const passport = require("passport")
 require("dotenv").config()
 
@@ -18,6 +19,9 @@ var listingsRouter = require("./routes/listings")
 var tenantsRouter = require("./routes/tenants")
 
 var app = express()
+
+// CORS
+app.use(cors())
 
 app.use(logger("dev"))
 app.use(express.json())
