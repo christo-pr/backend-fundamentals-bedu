@@ -12,7 +12,11 @@ export const request = (path, options = {}) => {
   const reqOptions = {}
   const headers = new Headers()
 
-  if (options.type === "post" || options.type === "put") {
+  if (
+    options.type === "post" ||
+    options.type === "put" ||
+    options.type === "delete"
+  ) {
     reqOptions.method = options.type.toUpperCase()
     headers.append("Content-Type", "application/json")
     reqOptions.body = JSON.stringify(options.body)

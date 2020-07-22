@@ -34,7 +34,7 @@ const Tenants = (props) => {
 }
 
 export const Listing = (props) => {
-  const { id } = props
+  const { id, navigate } = props
   const [listing, setListing] = useState({})
 
   useEffect(() => {
@@ -48,6 +48,16 @@ export const Listing = (props) => {
 
     fetchListingDetails()
   }, [id])
+
+  const deleteListing = async (id) => {
+    const response = await request(`/listings/${id}`, {
+      secure: true,
+      type: "delete",
+    })
+
+    console.log("deleteListing -> response", response)
+    navigate("/dashboard")
+  }
 
   return (
     <>
@@ -96,6 +106,13 @@ export const Listing = (props) => {
                 description={listing.description}
               />
             )}
+            <Button
+              color="danger"
+              icon="trash"
+              onClick={() => deleteListing(listing.id)}
+            >
+              Eliminar
+            </Button>
           </Grid.Col>
         </Grid.Row>
       </Page.Content>
