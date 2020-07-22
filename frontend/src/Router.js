@@ -10,6 +10,7 @@ import {
   Register,
   Logout,
   ListingCreate,
+  TenantCreate,
 } from "./pages"
 
 export const Routes = () => {
@@ -22,6 +23,7 @@ export const Routes = () => {
       <Listing path="listing/:id" />
       <ListingCreate path="listing/new" />
       <Tenant path="tenant/:id" />
+      <TenantCreate path="tenant/:listingId/new" />
       <Error404Page default />
     </Router>
   )

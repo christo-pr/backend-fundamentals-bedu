@@ -7,13 +7,14 @@ import {
   List,
   Button,
   Loader,
+  Icon,
 } from "tabler-react"
 import { Link } from "@reach/router"
 
 import { request } from "../utils/request"
 
 const Tenants = (props) => {
-  const { tenants = [] } = props
+  const { tenants = [], listingId } = props
 
   return (
     <List.Group>
@@ -22,6 +23,12 @@ const Tenants = (props) => {
           <Link to={`/tenant/${t.id}`}>{t.name}</Link>
         </List.GroupItem>
       ))}
+      <br />
+      <div align="center">
+        <Link to={`/tenant/${listingId}/new`}>
+          <Icon prefix="fa" name="plus" />
+        </Link>
+      </div>
     </List.Group>
   )
 }
@@ -37,7 +44,6 @@ export const Listing = (props) => {
       if (response.messge) return
 
       setListing(response)
-      console.log("fetchListingDetails -> response", response)
     }
 
     fetchListingDetails()
@@ -79,7 +85,12 @@ export const Listing = (props) => {
                   },
                   {
                     title: "Inquilinos",
-                    content: <Tenants tenants={listing.tenants} />,
+                    content: (
+                      <Tenants
+                        tenants={listing.tenants}
+                        listingId={listing.id}
+                      />
+                    ),
                   },
                 ]}
                 description={listing.description}
