@@ -19,7 +19,7 @@ const Tenants = (props) => {
     <List.Group>
       {tenants.map((t) => (
         <List.GroupItem action icon="user" key={t.id}>
-          {t.name}
+          <Link to={`/tenant/${t.id}`}>{t.name}</Link>
         </List.GroupItem>
       ))}
     </List.Group>

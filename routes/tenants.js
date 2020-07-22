@@ -10,7 +10,7 @@ router.get("/", function (req, res, next) {
 
 /* GET tenants */
 router.get("/:id", function (req, res, next) {
-  return db.Tenant.findByPk(req.param.id).then((tenant) => res.json(tenants))
+  return db.Tenant.findByPk(req.params.id).then((tenant) => res.json(tenant))
 })
 
 /* POST tenants */
