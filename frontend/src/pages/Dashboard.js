@@ -24,7 +24,10 @@ export const Dashboard = (props) => {
   return (
     <>
       <Site.Nav items={[<Nav.Link to="logout">Logout</Nav.Link>]} />
-      <Page.Content title="Dashboard">
+      <Page.Content
+        title="Dashboard"
+        subTitle={<Link to="/listing/new">Nuevo Listing</Link>}
+      >
         <Grid.Row cards deck>
           {!!listings &&
             listings.map((l) => (
