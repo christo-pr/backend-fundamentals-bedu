@@ -1,23 +1,47 @@
-import React from "react"
-import { Site, Page, Grid, ContactCard, List, Button } from "tabler-react"
+import React, { useState, useEffect } from "react"
+import {
+  Site,
+  Page,
+  Grid,
+  ContactCard,
+  List,
+  Button,
+  Loader,
+} from "tabler-react"
+import { Link } from "@reach/router"
+
+import { request } from "../utils/request"
 
 const Tenants = (props) => {
-  const { tenants } = props
+  const { tenants = [] } = props
 
   return (
     <List.Group>
-      <List.GroupItem action icon="user">
-        User uno
-      </List.GroupItem>
-      <List.GroupItem action icon="user">
-        User dos
-      </List.GroupItem>
+      {tenants.map((t) => (
+        <List.GroupItem action icon="user" key={t.id}>
+          {t.name}
+        </List.GroupItem>
+      ))}
     </List.Group>
   )
 }
 
 export const Listing = (props) => {
   const { id } = props
+  const [listing, setListing] = useState({})
+
+  useEffect(() => {
+    async function fetchListingDetails() {
+      const response = await request(`/listings/${id}`, { secure: true })
+
+      if (response.messge) return
+
+      setListing(response)
+      console.log("fetchListingDetails -> response", response)
+    }
+
+    fetchListingDetails()
+  }, [id])
 
   return (
     <>
@@ -25,39 +49,42 @@ export const Listing = (props) => {
       <Page.Content
         title="Detalles"
         subTitle={
-          <Button color="dark" icon="arrow-left">
-            Regresar
-          </Button>
+          <Link to="/dashboard">
+            <Button color="dark" icon="arrow-left">
+              Regresar
+            </Button>
+          </Link>
         }
       >
         <Grid.Row cards deck>
           <Grid.Col md={12}>
             <br />
-            <ContactCard
-              cardTitle="Client card"
-              mapPlaceholder="https://i.ytimg.com/vi/p-UOosKS8Ew/maxresdefault.jpg"
-              rounded
-              alt="Generic placeholder image"
-              address={{
-                line1: "1290 Avenua of The Americas",
-                line2: "New York, NY 101040105",
-              }}
-              details={[
-                { title: "Price", content: "$1200 por mes" },
-                { title: "Maximos permitidos", content: "2" },
-                {
-                  title: "Fecha de pago",
-                  content: "10 de cada mes",
-                },
-                {
-                  title: "Inquilinos",
-                  content: <Tenants tenants={id} />,
-                },
-              ]}
-              description={`Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-   Consectetur dignissimos doloribus eum fugiat itaque
-  laboriosam maiores nisi nostrum perspiciatis vero.`}
-            />
+            {!Object.keys(listing).length ? (
+              <Loader />
+            ) : (
+              <ContactCard
+                cardTitle={listing.name}
+                mapPlaceholder="https://i.ytimg.com/vi/p-UOosKS8Ew/maxresdefault.jpg"
+                rounded
+                alt="Generic placeholder image"
+                address={{
+                  line1: listing.address,
+                }}
+                details={[
+                  { title: "Price", content: listing.price },
+                  { title: "Maximos permitidos", content: listing.maxAllow },
+                  {
+                    title: "Fecha de pago",
+                    content: listing.payDate,
+                  },
+                  {
+                    title: "Inquilinos",
+                    content: <Tenants tenants={listing.tenants} />,
+                  },
+                ]}
+                description={listing.description}
+              />
+            )}
           </Grid.Col>
         </Grid.Row>
       </Page.Content>

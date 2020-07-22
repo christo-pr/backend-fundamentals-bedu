@@ -11,7 +11,9 @@ router.get("/", function (req, res, next) {
 /* GET users listing. */
 router.get("/:id", function (req, res, next) {
   var listingId = req.params.id
-  return db.Listing.findByPk(listingId).then((listing) => res.json(listing))
+  return db.Listing.findByPk(listingId, {
+    include: ["tenants"],
+  }).then((listing) => res.json(listing))
 })
 
 /* POST users listing. */
