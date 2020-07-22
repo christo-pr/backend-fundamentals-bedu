@@ -21,5 +21,6 @@ export const storage = {
   },
   reset: () => {
     localStorage.removeItem(TOKEN_KEY)
+    localStorage.removeItem(USER_KEY)
   },
 }

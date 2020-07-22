@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Site, Page, Grid, Card, Icon, List } from "tabler-react"
+import { Site, Page, Grid, Card, Icon, List, Nav } from "tabler-react"
 import { Link } from "@reach/router"
 
 import { request } from "../utils/request"
@@ -23,7 +23,7 @@ export const Dashboard = (props) => {
 
   return (
     <>
-      <Site.Header />
+      <Site.Nav items={[<Nav.Link to="logout">Logout</Nav.Link>]} />
       <Page.Content title="Dashboard">
         <Grid.Row cards deck>
           {!!listings &&
